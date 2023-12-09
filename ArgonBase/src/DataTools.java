@@ -1,12 +1,19 @@
 import java.util.*;
-
+/*
+ * This class is a helper class that provides useful data conversion methods and operations with data
+ */
 public class DataTools {
+
+    //Given the value and its data type, convert it to its string representation
     public static String toStr(Constants.DataTypes dataType, Object value){
+        
+        //return null if the value is null
         if(value == null){
             return "NULL";
         }
 
         String str = "";
+
         //convert to appropriate database format
         switch(dataType){
             case YEAR:
@@ -19,8 +26,8 @@ public class DataTools {
             case TIME:
                 String time = Integer.toString((Integer) value);
                 int milliseconds = Integer.parseInt(time.substring(0, 2)) * 3600000 *
-                                    Integer.parseInt(time.substring(3,5)) * 60000 +
-                                    Integer.parseInt(time.substring(6, 8)) * 1000;
+                                   Integer.parseInt(time.substring(3,5)) * 60000 +
+                                   Integer.parseInt(time.substring(6, 8)) * 1000;
                 str = String.valueOf(milliseconds);
                 break;
 
@@ -84,7 +91,6 @@ public class DataTools {
                 
                 break;
 
-
             case NULL:
                 str = "NULL";
                 break;
@@ -98,7 +104,7 @@ public class DataTools {
         return str.trim();
     }
 
-    //Takes a string and data type and returns the parsed string to the data type
+    //Takes a string and data type and returns the parsed string to its corresponding data type
     public static Object parseStr(Constants.DataTypes dataType, String str){
         switch(dataType){
             case TINYINT:
@@ -189,8 +195,6 @@ public class DataTools {
 
                 return Long.parseLong(str);
 
-
-
             case TEXT:
                 return str;
             
@@ -199,11 +203,15 @@ public class DataTools {
         }
     }
 
+    //compares two values of a specific datatype based on the specified operator
     public static boolean compareWithOp(Constants.DataTypes columnType, Object value1, Object value2, String operator){
+        
+        //if either value1 or value2 are null, return false
         if(value1 == null || value2 == null){
             return false;
         }
 
+        //stores the result of the comparison
         int comparison = compareCol(columnType, value1, value2);
 
         switch(operator){
@@ -230,7 +238,10 @@ public class DataTools {
         }
     }
 
+    //compare two values of a specific data type
     public static int compareCol(Constants.DataTypes columnType, Object value1, Object value2){
+        
+        //if either value1 or value2 are null, return 0
         if(value1 == null || value2 == null){
             return 0;
         }
@@ -275,7 +286,10 @@ public class DataTools {
         }
     }
 
+    //helper method to compare two Comparable values
     public static <T extends Comparable<T>> int compareVal(T value1, T value2){
+        
+        //if either value1 or value2 are null, return 1
         if(value1 == null || value2 == null){
             return 1;
         }

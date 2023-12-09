@@ -1,7 +1,7 @@
 public class Settings {
     static String prompt = "argonsql> ";
 	static String version = "v1.0";
-	static String copyright = "©2023 Team Argon";
+	static String copyright = "(c)2023 Team Argon";
 	static boolean isExit = false;
 	static String userDataDir = "data/userData";
 	static String catalogDir = "data/catalog";
@@ -48,7 +48,7 @@ public class Settings {
 		Settings.copyright = copyright;
 	}
 
-	public static String getDataDirectory(){
+	public static String getUserDataDirectory(){
 		return userDataDir;
 	}
 

@@ -7,6 +7,7 @@ import java.util.Scanner;
 
 
 /**
+ * 	Main driver for ArgonBase, a rudimentary database engine.
  *  @author Team Argon
  *  @version 1.0
  *  <b>
@@ -31,12 +32,12 @@ public class ArgonBase {
     public static void main(String[] args) throws IOException{
         
         //Initialize the user data directory
-        File userDataDir = new File("userdata");
+        File dataDir = new File("data");
 
 		//Check if the user data directory doesn't exist
-		if(!userDataDir.exists()){
-			System.out.println("The user data directory doesn't exist. Trying to create it now...");
-			Directory.createDataDirectory(userDataDir);
+		if(!dataDir.exists()){
+			System.out.println("The data directory doesn't exist. Trying to create it now...");
+			Directory.createDataDirectory(dataDir);
 		}else{
 			Directory.createCatalogDirectory();
 		}
